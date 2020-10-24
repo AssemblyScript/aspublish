@@ -15,14 +15,14 @@ export const OTHER = 0;
 /** Executes a command and returns stdout. */
 export function exec(cmd, args = [], options = {}) {
   const res = spawnSync(cmd, args, options);
-  if (res.status != 0) throw Error(`command '${cmd} ${args.join(" ")}' failed with code ${res.status}: ${res.stderr.toString()}`);
+  if (res.status != 0) throw Error(`command '${cmd}' failed with code ${res.status}: ${res.stderr.toString()}`);
   return res.stdout.toString().trim();
 }
 
 /** Just runs a command. */
 export function run(cmd, args = []) {
   const res = spawnSync(cmd, args, { stdio: "inherit" });
-  if (res.status != 0) throw Error(`command '${cmd} ${args.join(" ")}' failed with code ${res.status}`);
+  if (res.status != 0) throw Error(`command '${cmd}' failed with code ${res.status}`);
 }
 
 /** Gets existing versions sorted from newest to oldest. */
@@ -248,7 +248,7 @@ export function publishRelease(nextVersion, commit, notes) {
 /** Publishes the package to npm. */
 export function publishPackage(version) {
   const token = getNpmToken();
-  run("npm", ["version", version]);
-  run("npm", ["npm", "config", "set", `//registry.npmjs.org/:_authToken=${token}`]);
+  run("npm", ["version", version, "--no-git-tag-version"]);
+  run("npm", ["config", "set", `//registry.npmjs.org/:_authToken=${token}`]);
   run("npm", ["publish", "--access", "public"]);
 }
