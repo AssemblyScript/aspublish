@@ -1,6 +1,6 @@
 export default {
   major: [
-    /^breaking(?: change):/i
+    /^breaking(?: change)?:/i
   ],
   minor: [
     /^feat(?:ure)?:/i
