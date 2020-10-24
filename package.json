@@ -1,0 +1,31 @@
+{
+  "name": "aspublish",
+  "description": "Minimalist publishing tool for GitHub and npm.",
+  "version": "0.0.0",
+  "author": "Daniel Wirtz <dcode+assemblyscript@dcode.io>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AssemblyScript/aspublish.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AssemblyScript/aspublish/issues"
+  },
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "aspublish": "bin/aspublish.js"
+  },
+  "dependencies": {
+    "semver": "^7.3.2"
+  },
+  "files": [
+    "bin/aspublish.js",
+    "config.js",
+    "index.js",
+    "LICENSE",
+    "package-lock.json",
+    "package.json",
+    "README.md"
+  ]
+}

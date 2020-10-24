@@ -1,0 +1,25 @@
+name: Publish
+on:
+  push:
+    branches:
+    - master
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        ref: master
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+    - name: Install dependencies
+      run: npm ci
+    - name: Make release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN:  ${{ secrets.NPM_TOKEN }}
+      run: |
+        echo "Next version will be: $(node bin/aspublish.js --version)"
+        node bin/aspublish.js
