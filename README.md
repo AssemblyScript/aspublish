@@ -1,6 +1,9 @@
 aspublish
 =========
 
+<a href="https://github.com/AssemblyScript/aspublish/actions?query=workflow%3APublish"><img src="https://img.shields.io/github/workflow/status/AssemblyScript/aspublish/Publish/master?label=publish&logo=github" alt="Publish status" /></a>
+<a href="https://www.npmjs.com/package/aspublish"><img src="https://img.shields.io/npm/v/aspublish.svg?label=aspublish&color=007acc&logo=npm" alt="npm version" /></a>
+
 Minimalist publishing tool for GitHub and npm. Generates a changelog, makes a GitHub release of it, and publishes the package to npm.
 
 Usage
