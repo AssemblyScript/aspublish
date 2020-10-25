@@ -139,9 +139,11 @@ export function getCommitsSince(sinceCommit = null) {
 /** Gets the current repository. */
 export function getRepo() {
   const url = exec("git", ["config", "--get", "remote.origin.url"]);
-  const match = /(\w+)\/(\w+)(?:\.git)?$/.exec(url);
+  const match = /\/(\w(?:[-_.]?\w)*)\/(\w(?:[-_.]?\w)*)$/.exec(url);
   if (!match) throw Error("invalid repository url: " + url);
-  return match[1] + "/" + match[2];
+  const user = match[1];
+  const repo = match[2].replace(/\.git$/, "");
+  return `${user}/${repo}`;
 }
 
 /** Gets the GitHub token to use. */
