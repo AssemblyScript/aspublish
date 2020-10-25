@@ -173,6 +173,7 @@ export function generateReleaseNotes(commits) {
   function writeSection(category, title) {
     sb.push(`### ${title}\n\n`);
     for (let { subject, hash, body } of category) {
+      subject = subject.replace(/\*/g, "\\*");
       sb.push(`* **${subject}** (${hash})\n`);
       if (body.length) {
         body = body.split(/\r?\n/g).join("\n  ");
