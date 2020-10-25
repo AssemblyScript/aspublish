@@ -21,5 +21,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN:  ${{ secrets.NPM_TOKEN }}
       run: |
-        echo "Next version will be: $(node bin/aspublish.js --version)"
-        node bin/aspublish.js
+        VERSION=$(node bin/aspublish.js --version)
+        if [ -z "$VERSION" ]; then
+          echo "Changes do not trigger a release"
+        else
+          echo "Publishing new version: $VERSION"
+          node bin/aspublish.js
+        fi
