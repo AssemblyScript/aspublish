@@ -172,9 +172,12 @@ export function generateReleaseNotes(commits) {
   const sb = [];
   function writeSection(category, title) {
     sb.push(`## ${title}\n\n`);
-    for (let commit of category) {
-      sb.push(`* **${commit.subject}** (${commit.hash})\n`);
-      if (commit.body.length) sb.push(`  ${commit.body}\n`);
+    for (let { subject, hash, body } of category) {
+      sb.push(`* **${subject}** (${hash})\n`);
+      if (body.length) {
+        body = body.split(/\r?\n/g).join("\n  ");
+        sb.push(`  ${body}\n`);
+      }
     }
     sb.push("\n");
   }
