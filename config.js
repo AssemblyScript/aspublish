@@ -1,11 +1,14 @@
 export default {
   major: [
-    /^breaking(?: change)?:/i
+    /^major:/i,
+    /^breaking(?: change)?:/i,
   ],
   minor: [
+    /^minor:/i,
     /^feat(?:ure)?:/i
   ],
   patch: [
-    /^(?:fix|patch):/i
+    /^patch:/i,
+    /^fix:/i
   ]
 };
