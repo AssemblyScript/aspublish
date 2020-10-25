@@ -38,4 +38,36 @@ Prefix      | Release type | Pre 1.0.0          | Post 1.0.0
 `feat:`     | Minor        | `0.1.0` -> `0.1.1` | `1.0.0` -> `1.1.0`
 `fix:`      | Patch        | `0.1.0` -> `0.1.1` | `1.0.0` -> `1.0.1`
 
-Everything else, except a few [abbreviations](./config.js), will not trigger a new version / release.
+Except a few [aliases and abbreviations](./config.js), other prefixes will not trigger a new version / release.
+
+Example
+-------
+
+As a step during GitHub Actions:
+
+```yml
+- name: Make release
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    NPM_TOKEN:  ${{ secrets.NPM_TOKEN }}
+  run: |
+    VERSION=$(npx aspublish --version)
+    if [ -z "$VERSION" ]; then
+      echo "Changes do not trigger a release"
+    else
+      echo "Publishing new version: $VERSION"
+      npx aspublish
+    fi
+```
+
+Or, if obtaining the version upfront is not necessary:
+
+```yml
+- name: Make release
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    NPM_TOKEN:  ${{ secrets.NPM_TOKEN }}
+  run: npx aspublish
+```
+
+See this repository's [publish.yml](.github/workflows/publish.yml) for a complete configuration (replace `node bin/aspublish.js` with `npx aspublish`).
