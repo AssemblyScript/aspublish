@@ -171,7 +171,7 @@ export function generateReleaseNotes(commits) {
   }
   const sb = [];
   function writeSection(category, title) {
-    sb.push(`## ${title}\n\n`);
+    sb.push(`### ${title}\n\n`);
     for (let { subject, hash, body } of category) {
       sb.push(`* **${subject}** (${hash})\n`);
       if (body.length) {
