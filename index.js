@@ -254,7 +254,7 @@ export function publishRelease(nextVersion, commit, notes) {
 /** Publishes the package to npm. */
 export function publishPackage(version) {
   const token = getNpmToken();
-  run("npm", ["version", version, "--no-git-tag-version"]);
+  run("npm", ["version", version, "--no-git-tag-version", "--allow-same-version"]);
   run("npm", ["config", "set", `//registry.npmjs.org/:_authToken=${token}`]);
   run("npm", ["publish", "--access", "public"]);
 }
