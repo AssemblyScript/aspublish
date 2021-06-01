@@ -2,7 +2,7 @@ name: Publish
 on:
   push:
     branches:
-    - master
+    - main
 jobs:
   release:
     name: Release
@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
       with:
-        ref: master
+        ref: main
     - uses: actions/setup-node@v1
       with:
         node-version: '14'
