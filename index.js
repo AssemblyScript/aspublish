@@ -224,12 +224,13 @@ export function publishRelease(nextVersion, commit, notes) {
   const req = request({
     hostname: 'api.github.com',
     port: 443,
-    path: `/repos/${repo}/releases?access_token=${token}`,
+    path: `/repos/${repo}/releases`,
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
       "Content-Length": data.length,
-      "User-Agent": "aspublish"
+      "User-Agent": "aspublish",
+      "Authorization": `token ${token}`
     }
   }, res => {
     const chunks = [];
